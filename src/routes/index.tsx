@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Loader2, Check, Upload, Sparkles } from "lucide-react";
+import genieMascot from "@/assets/genie-mascot.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CareerJeenie — Your AI-powered job match assistant" },
+      { title: "CareerGenie — Your AI-powered job match assistant" },
       { name: "description", content: "Upload your resume and let CareerJeenie magically find your best job matches from any company careers page." },
-      { property: "og:title", content: "CareerJeenie" },
+      { property: "og:title", content: "CareerGenie" },
       { property: "og:description", content: "Your AI-powered job match assistant." },
     ],
   }),
@@ -70,11 +71,17 @@ function Index() {
 
       <div className="relative w-full max-w-xl">
         <header className="mb-10 text-center">
-          <div className="mb-4 inline-flex items-center justify-center text-6xl drop-shadow-[0_0_25px_oklch(0.82_0.16_85_/_0.6)]">
-            🪔
+          <div className="mb-4 inline-flex items-center justify-center drop-shadow-[0_0_35px_oklch(0.82_0.16_85_/_0.55)]">
+            <img
+              src={genieMascot}
+              alt="CareerGenie mascot — a genie in a formal suit holding a magic lamp"
+              width={1024}
+              height={1024}
+              className="h-40 w-40 object-contain"
+            />
           </div>
           <h1 className="bg-clip-text text-5xl font-bold tracking-tight text-transparent" style={{ backgroundImage: "var(--gradient-genie)" }}>
-            ✨ CareerJeenie
+            ✨ CareerGenie
           </h1>
           <p className="mt-3 text-base text-muted-foreground">
             Your AI-powered job match assistant
@@ -149,7 +156,7 @@ function Index() {
               {status === "loading" ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  CareerJeenie is working its magic...
+                  CareerGenie is working its magic...
                 </>
               ) : (
                 <>
