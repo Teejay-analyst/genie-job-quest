@@ -35,6 +35,7 @@ function Index() {
   const [jobRole, setJobRole] = useState("");
   const [resume, setResume] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("idle");
+  const [responseMessage, setResponseMessage] = useState<string>("");
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -51,6 +52,21 @@ function Index() {
         }),
       });
       if (!res.ok) throw new Error("Request failed");
+      const text = await res.text();
+      let display = text;
+      try {
+        const json = JSON.parse(text);
+        display =
+          json.message ??
+          json.response ??
+          json.requestId ??
+          json.request_id ??
+          json.id ??
+          JSON.stringify(json, null, 2);
+      } catch {
+        // not JSON, keep raw text
+      }
+      setResponseMessage(display?.toString().trim() || "");
       setStatus("success");
     } catch {
       setStatus("error");
