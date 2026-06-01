@@ -32,22 +32,20 @@ function fileToBase64(file: File): Promise<string> {
 }
 
 function Index() {
-  const [companyUrl, setCompanyUrl] = useState("");
   const [jobRole, setJobRole] = useState("");
   const [resume, setResume] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("idle");
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!companyUrl || !jobRole || !resume) return;
+    if (!jobRole || !resume) return;
     setStatus("loading");
     try {
       const base64 = await fileToBase64(resume);
-      const res = await fetch("https://theerthajayadev02.app.n8n.cloud/webhook/careerjeenie", {
+      const res = await fetch("https://theerthajayadev02.app.n8n.cloud/webhook/231bec3f-eedc-4446-af7e-80a0561d6f3e", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          company_url: companyUrl,
           job_role: jobRole,
           resume_file: base64,
         }),
@@ -93,21 +91,6 @@ function Index() {
           style={{ boxShadow: "var(--shadow-glow)" }}
         >
           <form onSubmit={onSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="url" className="text-sm font-medium text-foreground">
-                Company careers page
-              </label>
-              <input
-                id="url"
-                type="url"
-                required
-                value={companyUrl}
-                onChange={(e) => setCompanyUrl(e.target.value)}
-                placeholder="https://company.com/careers"
-                className="w-full rounded-lg border border-border bg-input/40 px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/40"
-              />
-            </div>
-
             <div className="space-y-2">
               <label htmlFor="role" className="text-sm font-medium text-foreground">
                 Target job role
