@@ -35,6 +35,7 @@ function Index() {
   const [jobRole, setJobRole] = useState("");
   const [resume, setResume] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("idle");
+  const [responseMessage, setResponseMessage] = useState<string>("");
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -51,6 +52,21 @@ function Index() {
         }),
       });
       if (!res.ok) throw new Error("Request failed");
+      const text = await res.text();
+      let display = text;
+      try {
+        const json = JSON.parse(text);
+        display =
+          json.message ??
+          json.response ??
+          json.requestId ??
+          json.request_id ??
+          json.id ??
+          JSON.stringify(json, null, 2);
+      } catch {
+        // not JSON, keep raw text
+      }
+      setResponseMessage(display?.toString().trim() || "");
       setStatus("success");
     } catch {
       setStatus("error");
@@ -151,8 +167,15 @@ function Index() {
 
             {status === "success" && (
               <div className="flex items-center gap-3 rounded-lg border border-success/40 bg-success/10 p-4 text-sm text-success">
-                <Check className="h-5 w-5 shrink-0" />
-                <span>Done! Your matches have been added to your Google Sheet.</span>
+                <Check className="mt-0.5 h-5 w-5 shrink-0" />
+                <div className="space-y-1">
+                  <p>Done! Your matches have been added to your Google Sheet.</p>
+                  {responseMessage && (
+                    <pre className="max-h-48 overflow-auto whitespace-pre-wrap break-words rounded-md bg-success/10 p-2 text-xs text-success/90">
+                      {responseMessage}
+                    </pre>
+                  )}
+                </div>
               </div>
             )}
 
