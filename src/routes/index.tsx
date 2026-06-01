@@ -167,8 +167,15 @@ function Index() {
 
             {status === "success" && (
               <div className="flex items-center gap-3 rounded-lg border border-success/40 bg-success/10 p-4 text-sm text-success">
-                <Check className="h-5 w-5 shrink-0" />
-                <span>Done! Your matches have been added to your Google Sheet.</span>
+                <Check className="mt-0.5 h-5 w-5 shrink-0" />
+                <div className="space-y-1">
+                  <p>Done! Your matches have been added to your Google Sheet.</p>
+                  {responseMessage && (
+                    <pre className="max-h-48 overflow-auto whitespace-pre-wrap break-words rounded-md bg-success/10 p-2 text-xs text-success/90">
+                      {responseMessage}
+                    </pre>
+                  )}
+                </div>
               </div>
             )}
 
