@@ -1,4 +1,4 @@
-# Genie Job Quest
+# CareerGenie
 
 AI-powered job search assistant built using Lovable, n8n, OpenAI and Apify.
 
