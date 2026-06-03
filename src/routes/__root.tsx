@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "CareerGenie" },
+      { name: "description", content: "CareerGenie is an AI-powered job matching assistant that finds career opportunities." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "CareerGenie" },
+      { property: "og:description", content: "CareerGenie is an AI-powered job matching assistant that finds career opportunities." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "CareerGenie" },
+      { name: "twitter:description", content: "CareerGenie is an AI-powered job matching assistant that finds career opportunities." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/34d2bf2b-98bb-48ea-9606-5b44fe5ef3d6/id-preview-d5753542--91df23d4-dd59-44b3-a1e3-b98f8d4a5f8f.lovable.app-1780451969420.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/34d2bf2b-98bb-48ea-9606-5b44fe5ef3d6/id-preview-d5753542--91df23d4-dd59-44b3-a1e3-b98f8d4a5f8f.lovable.app-1780451969420.png" },
     ],
     links: [
       {
